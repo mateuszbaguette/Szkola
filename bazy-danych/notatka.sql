@@ -5,16 +5,18 @@ select * from filmy where cena < 2006 and cena > 8
 select * from filmy where rok_produkcji = 1984 or cena > 6
 select * from filmy where cena < 2006 and cena > 8 order by 'tytuł'
 
-kolejność klauzur w sql jest ściśle określona 
-najpierw select, from, where, order by
+--kolejność klauzur w sql jest ściśle określona 
+--najpierw select, from, where, order by
 
-odczytaj rekordy filmów w których pierwsza litera to 'T'
+--odczytaj rekordy filmów w których pierwsza litera to 'T'
 SELECT * FROM filmy WHERE tytul LIKE 't%';
 SELECT * FROM filmy WHERE left(tytul,2) = 'Te'
 
+/*
+Przydatne funkcje:
 ROUND()  - zaokrągla
 LENGTH() - Zwraca liczbę znaków
 LOWER()  - zamienia litery na małe
 UPPER()  - zamienia litery na wielkie
 SUBSTR() - zwaraca fragment tekstu
-
+*/
