@@ -9,4 +9,12 @@ kolejność klauzur w sql jest ściśle określona
 najpierw select, from, where, order by
 
 odczytaj rekordy filmów w których pierwsza litera to 'T'
+SELECT * FROM filmy WHERE tytul LIKE 't%';
+SELECT * FROM filmy WHERE left(tytul,2) = 'Te'
+
+ROUND()  - zaokrągla
+LENGTH() - Zwraca liczbę znaków
+LOWER()  - zamienia litery na małe
+UPPER()  - zamienia litery na wielkie
+SUBSTR() - zwaraca fragment tekstu
 
