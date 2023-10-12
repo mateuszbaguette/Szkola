@@ -20,3 +20,5 @@ LOWER()  - zamienia litery na małe
 UPPER()  - zamienia litery na wielkie
 SUBSTR() - zwaraca fragment tekstu
 */
+SELECT id_kopii, data_zwrotu-data_wypozyczenia as czas FROM wypozyczenia WHERE data_zwrotu-data_wypozyczenia>1
+SELECT CONCAT(LEFT(imie,1),'. ', nazwisko) as aktor from aktorzy 
