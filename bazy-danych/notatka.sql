@@ -35,5 +35,8 @@ SELECT * FROM tabela1 as t1 join tabela2 as t2 on warunek_połączeniowy
 --przykład
 SELECT * FROM aktorzy as a1 join aktorzy as a2 on a1.imie=a2.imie where a1.imie = 'Tom';
 
-
+SELECT filmy.tytul from filmy join kopie on kopie.id_filmu = filmy.id_filmu join wypozyczenia on wypozyczenia.id_kopii = kopie.id_kopii = kopie.id_kopii 
+join klienci on klienci.id_klienta = wypozyczenia.id_klienta WHERE klienci.nazwisko='Kowalski' INTERSECT SELECT filmy.tytul from filmy JOIN kopie 
+on kopie.id_filmu JOIN wypozyczenia on wypozyczenia.id_kopii = kopie.id_kopii join klienci on klienci.id_klienta = wypozyczenia.id_klienta WHERE 
+klienci.nazwisko = "Nowak"; 
 
