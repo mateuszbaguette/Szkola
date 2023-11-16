@@ -44,3 +44,7 @@ SELECT rental_date from rental where rental_date < now();
 SELECT subdate(rental_date,now()) from rental;
 SELECT film_id, title, length FROM film ORDER BY RAND() LIMIT 10;
 
+SELECT film.film_id, film.title, film.length, category.name AS category_name
+FROM film JOIN film_category ON film.film_id = film_category.film_id 
+JOIN category ON film_category.category_id = category.category_id ORDER BY RAND() LIMIT 10;
+
