@@ -40,3 +40,7 @@ join klienci on klienci.id_klienta = wypozyczenia.id_klienta WHERE klienci.nazwi
 on kopie.id_filmu JOIN wypozyczenia on wypozyczenia.id_kopii = kopie.id_kopii join klienci on klienci.id_klienta = wypozyczenia.id_klienta WHERE 
 klienci.nazwisko = "Nowak"; 
 
+SELECT rental_date from rental where rental_date < now();
+SELECT subdate(rental_date,now()) from rental;
+SELECT film_id, title, length FROM film ORDER BY RAND() LIMIT 10;
+
