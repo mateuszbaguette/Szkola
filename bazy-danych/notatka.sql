@@ -48,3 +48,15 @@ SELECT film.film_id, film.title, film.length, category.name AS category_name
 FROM film JOIN film_category ON film.film_id = film_category.film_id 
 JOIN category ON film_category.category_id = category.category_id ORDER BY RAND() LIMIT 10;
 
+INSERT INTO sakila.actor VALUES(201,'Henry','Cavil','2003-02-22 17:23:30'); 
+
+UPDATE sakila.actor set first_name = 'Gal', last_name = 'Gadot'
+WHERE actor_id = '203';
+SELECT * from sakila.actor;
+
+--SELECT aby sprawdzić
+--SZUKAMY ID zanim sprawdzimy
+--Nie zapominać o where przy delete
+
+DELETE from sakila.actor where actor_id = '202';
+
