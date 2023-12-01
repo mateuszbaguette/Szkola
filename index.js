@@ -8,6 +8,19 @@ const connection = mysql.createConnection({
   database: 'test'
 });
 
+
+
+ let query = 'SELECT * FROM ' +tab+ 'parametr';  
+  connection.query()
+      query,
+      function(err, results, fields) {
+        console.log(results); 
+        console.log(fields);
+        return fields;
+      }
+}
+
+
 function dodaj(obj, tab) {
   let query = 'INSERT INTO ' + tab;
   query+="(imie,nazwisko,plec,data,cokolwiek)";
@@ -17,20 +30,6 @@ function dodaj(obj, tab) {
   query+=")";
   connection.query(query) 
  
-}
-
-
-function aktaualizuj(id,obj,tab,warunek) {
-  connection.query(query);
-  let query='UPDATE'+tab
-  if(warunek){
-    query+='WHERE id='+id; 
-  }
-  query+="(imie,nazwisko,plec,data,cokolwiek)";
-  query+="VALUES(";
-  query+=obj.imie;
-  query+=obj.nazwisko;
-  query+=")";
 }
 
 function usun(id,tab){
@@ -44,14 +43,19 @@ function pobierz(parametr,tab) {
     parametr = 'WHERE `name` = "Page" AND `age` > 45';
   }
 
- let query = 'SELECT * FROM ' +tab+ 'parametr';  
-  connection.query()
-      query,
-      function(err, results, fields) {
-        console.log(results); 
-        console.log(fields);
-        return fields;
-      }
+  
+
+function aktaualizuj(id,obj,tab,warunek) {
+  connection.query(query);
+  let query='UPDATE'+tab
+  if(warunek){
+    query+='WHERE id='+id; 
+  }
+  query+="(imie,nazwisko,plec,data,cokolwiek)";
+  query+="VALUES(";
+  query+=obj.imie;
+  query+=obj.nazwisko;
+  query+=")";
 }
 
 
