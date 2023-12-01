@@ -60,3 +60,11 @@ SELECT * from sakila.actor;
 
 DELETE from sakila.actor where actor_id = '202';
 
+SELECT * from sakila.customer where store_id = 2 and active = 0; 
+--3.18 
+SELECT title from sakila.film where replacement_cost > 25 and replacement_cost < 30; 
+--4.19
+
+
+
+
