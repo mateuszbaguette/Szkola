@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekt</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    
+    <div id="inputbox">
+    <input type="button" value="Wczytaj plik JSON" onclick="loadJSON()"> 
+    </div>
+
+    <div id="genbox">
+        
+    </div>
+
+    <p id="wart">Łączna liczba punktów: 100</p>
+
+    <script>
+     
+        let obj= {"kary": [{}]}
+        var xmlhttp = new XMLHttpRequest();
+        var url = "kary.json";
+
+        xmlhttp.onreadystatechange = function() 
+        {
+            if (this.readyState == 4 && this.status == 200) 
+            {
+            obj = JSON.parse(this.responseText);
+            }
+        };
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+
+
+        function loadJSON()
+        {
+            let genb = document.getElementById("genbox");
+            let inb = document.getElementById("inputbox");
+            let optionstringneg = "";
+            let optionstringpos = "";
+
+    
+            for(let i = 1;i<obj.kary.length;i++)
+            {
+                optionstringneg+='<option value="'+obj.kary[i].value+'">'+obj.kary[i].nazwa+'</option>';
+            }
+            for(let i = 1;i<obj.plusy.length;i++)
+            {
+                optionstringpos+='<option value="'+obj.plusy[i].value+'">'+obj.plusy[i].nazwa+'</option>';
+            }
+            genb.innerHTML='<select name="huh" id="bruh">'+optionstringneg;
+            genb.innerHTML+='<select name="huh2" id="bruh2">'+optionstringpos;
+            inb.innerHTML='<input type="button" value="Wczytaj plik JSON" onclick="loadJSON()"> <input type="button" value="DodajNEG" onclick="rmvalue()"> <input type="button" value="DodajPOS" onclick="addvalue()">';
+
+        }
+
+        let finalwarto = 100;
+
+        function rmvalue()
+        {
+            let warto = document.getElementById("wart")
+            let drop = document.getElementById("bruh")
+            finalwarto-=parseInt(drop.value);
+            warto.innerHTML='Łączna liczba punktów: '+finalwarto;
+
+        }
+        function addvalue()
+        {
+            let warto = document.getElementById("wart")
+            let drop = document.getElementById("bruh2")
+            finalwarto-=parseInt(drop.value);
+            warto.innerHTML='Łączna liczba punktów: '+finalwarto;
+
+        }
+     
+                
+        
+    </script>
+</body>
+</html>
