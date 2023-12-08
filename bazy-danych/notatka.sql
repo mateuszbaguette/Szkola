@@ -65,6 +65,16 @@ SELECT * from sakila.customer where store_id = 2 and active = 0;
 SELECT title from sakila.film where replacement_cost > 25 and replacement_cost < 30; 
 --4.19
 
+CREATE TABLE towary(id SERIAL, nazwa varchar(255),przyjaciele TIMESTAMP);
+INSERT INTO towary(nazwa) VALUES('Mleko');
+INSERT INTO towary(nazwa) VALUES('Ser');
+INSERT INTO towary(nazwa) VALUES('Smietana');
+INSERT INTO towary(nazwa) VALUES('Jogurt');
+
+UPDATE towary set nazwa = 'Jogurt ABC' WHERE id = 3;
+
+
+
 
 
 
