@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+
+  
+    <div class="menu" style="padding: 15px;">
+        <button type="button" class="btn btn-primary" onclick="btt1()">Dodaj ucznia</button>
+        <button type="button" class="btn btn-primary" onclick="btt2()">Dodaj książkę</button>
+        <button type="button" class="btn btn-primary" onclick="btt3()">Wyświetl uczniów</button>
+        <button type="button" class="btn btn-primary" onclick="btt4()">Wyświetl Książki</button>
+        <button type="button" class="btn btn-primary" onclick="psotnik()">!!!!POST!!!!</button>
+    </div>
+
+    <form class="form-horizontal" style="padding: 15px;" id="formuczen">
+        <fieldset>
+        
+        <!-- Form Name -->
+        <legend>Formularz uczeń</legend>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="imie1">Imie</label>  
+          <div class="col-md-4">
+          <input id="imie1" name="imie1" type="text" placeholder="Imie ucznia" class="form-control input-md" required="">
+            
+          </div>
+        </div>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="nazwisko1">Nazwisko</label>  
+          <div class="col-md-4">
+          <input id="nazwisko1" name="nazwisko1" type="text" placeholder="Nazwisko ucznia" class="form-control input-md" required="">
+            
+          </div>
+        </div>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="klasa">Klasa</label>  
+          <div class="col-md-4">
+          <input id="klasa" name="klasa" type="text" placeholder="Klasa ucznia" class="form-control input-md" required="">
+            
+          </div>
+        </div>
+
+         <div class="form-group">
+          <label class="col-md-4 control-label" for="data1">Data</label>  
+          <div class="col-md-4">
+          <input id="data" name="data" type="date" placeholder="Data urodzenia" class="form-control input-md" required="">
+            
+          </div>
+        </div>
+        
+        </fieldset>
+        </form>
+        
+
+    <form class="form-horizontal" style="padding: 15px; display: none;" id="formksiazka">
+        <fieldset>
+        
+        <!-- Form Name -->
+        <legend>Dane książki</legend>
+        
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="autor">Autor</label>  
+            <div class="col-md-4">
+            <input id="autor" name="autor" type="text" placeholder="Autor książki" class="form-control input-md" required="">
+            
+            </div>
+        </div>
+        
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="tytul">Tytuł</label>  
+            <div class="col-md-4">
+            <input id="tytul" name="tytul" type="text" placeholder="Tytuł książki" class="form-control input-md" required="">
+            
+            </div>
+        </div>
+        
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="isbn">ISBN</label>  
+            <div class="col-md-4">
+            <input id="isbn" name="isbn" type="text" placeholder="exmp: 124-5233-5151..." class="form-control input-md" required="">
+            
+            </div>
+        </div>
+
+        
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="datak">Data wydania</label>  
+            <div class="col-md-4">
+            <input id="datak" name="datak" type="date" placeholder="Data wydania książki" class="form-control input-md" required="">
+              
+            </div>
+          </div>
+        
+        </fieldset>
+        </form>
+        
+    <div id="uczniowie" style="display: none;">Uczen</div>
+
+    <div id="ksiazki" style="display: none;">Ksiazka</div>
+
+
+    
+</body>
+
+
+    
+</body>
+
+<script>
+
+let postObj = { 
+
+id: 7, 
+user: "bm7",
+imie: "Mateusz"
+
+}
+
+
+var x1 = document.getElementById("formuczen");
+var x2 = document.getElementById("formksiazka");
+var x3 = document.getElementById("uczniowie");
+var x4 = document.getElementById("ksiazki");
+
+function btt1() {
+    if (x1.style.display === "none") {
+      x1.style.display = "block";
+      x2.style.display = "none";
+      x3.style.display = "none";
+      x4.style.display = "none";
+    }
+  } 
+function btt2() {
+if (x2.style.display === "none") {
+        x2.style.display = "block";
+        x1.style.display = "none";
+        x3.style.display = "none";
+        x4.style.display = "none";
+    }
+} 
+
+function btt3() {
+if (x3.style.display === "none") {
+        x3.style.display = "block";
+        x2.style.display = "none";
+        x4.style.display = "none";
+        x1.style.display = "none";
+    }
+} 
+
+function btt4() {
+if (x4.style.display === "none") {
+        x4.style.display = "block";
+        x3.style.display = "none";
+        x2.style.display = "none";
+        x1.style.display = "none";
+    }
+} 
+
+function psotnik()
+{
+    console.log("Post started") 
+    let post = JSON.stringify(postObj)
+
+    const url = "https://imiki.pl/projekt"
+
+    let xhr = new XMLHttpRequest()
+
+    xhr.open('POST', url, true)
+
+    xhr.setRequestHeader('Content-Type', 'application/json')
+
+ 
+    xhr.onreadystatechange = function() {//Call a function when the state changes.
+    if(xhr.readyState == 4 && xhr.status == 200) {
+         console.log("Done")
+    }
+}
+xhr.send(post);
+  
+   console.log("Finished") 
+}
+
+
+
+
+
+
+
+
+</script>
+</html>
