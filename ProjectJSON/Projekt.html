@@ -14,126 +14,70 @@
         <button type="button" class="btn btn-primary" onclick="btt2()">Dodaj książkę</button>
         <button type="button" class="btn btn-primary" onclick="btt3()">Wyświetl uczniów</button>
         <button type="button" class="btn btn-primary" onclick="btt4()">Wyświetl Książki</button>
-        <button type="button" class="btn btn-primary" onclick="psotnik()">!!!!POST!!!!</button>
+     
     </div>
 
-    <form class="form-horizontal" style="padding: 15px;" id="formuczen">
-        <fieldset>
+    <div id="okno1">
+    <form action="https://imiki.pl/projekt/bm7/users" id="formuczen" method="post" style="padding: 15px;">
+      <input type="hidden" value="bm7" name="id"> 
+      <div class="form-group">
+          <label for="imie">Imię:</label>
+          <input type="text" class="form-control" id="imie" name="imie" required>
+      </div>
+      <div class="form-group">
+          <label for="nazwisko">Nazwisko:</label>
+          <input type="text" class="form-control" id="nazwisko" name="nazwisko" required>
+      </div>
+      <div class="form-group">
+          <label for="klasa">Klasa:</label>
+          <input type="text" class="form-control" id="klasa" name="klasa" required>
+      </div>
+      <button class="btn btn-primary" type="submit">Wyślij</button>
+  </form>
+  </div>
         
-        <!-- Form Name -->
-        <legend>Formularz uczeń</legend>
+  <div id="okno2" style="display: none;">
+  <form action="https://imiki.pl/projekt/bm7/books" id="formksiazka" method="post" style="padding: 15px;">
+    <input type="hidden" value="bm7" name="id"> 
+    <div class="form-group">
+        <label for="tytul">Tytuł:</label>
+        <input type="text" class="form-control" id="tytul" name="tytul" required>
+    </div>
+    <div class="form-group">
+        <label for="autor">Autor:</label>
+        <input type="text" class="form-control" id="autor" name="autor" required>
+    </div>
+    <div class="form-group">
+        <label for="ISBN">ISBN: </label>
+        <input type="text" class="form-control" id="ISBN" name="ISBN" required>
+    </div>
+    <div class="form-group">
+      <label for="data">Data: </label>
+      <input type="date" class="form-control" id="data" name="data" required>
+  </div>
+    <button class="btn btn-primary" type="submit">Wyślij</button>
+  </form>
+  </div>
         
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="imie1">Imie</label>  
-          <div class="col-md-4">
-          <input id="imie1" name="imie1" type="text" placeholder="Imie ucznia" class="form-control input-md" required="">
-            
-          </div>
-        </div>
-        
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="nazwisko1">Nazwisko</label>  
-          <div class="col-md-4">
-          <input id="nazwisko1" name="nazwisko1" type="text" placeholder="Nazwisko ucznia" class="form-control input-md" required="">
-            
-          </div>
-        </div>
-        
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="klasa">Klasa</label>  
-          <div class="col-md-4">
-          <input id="klasa" name="klasa" type="text" placeholder="Klasa ucznia" class="form-control input-md" required="">
-            
-          </div>
-        </div>
+    <div id="okno3" style="display: none;">Uczen</div>
 
-         <div class="form-group">
-          <label class="col-md-4 control-label" for="data1">Data</label>  
-          <div class="col-md-4">
-          <input id="data" name="data" type="date" placeholder="Data urodzenia" class="form-control input-md" required="">
-            
-          </div>
-        </div>
-        
-        </fieldset>
-        </form>
-        
-
-    <form class="form-horizontal" style="padding: 15px; display: none;" id="formksiazka">
-        <fieldset>
-        
-        <!-- Form Name -->
-        <legend>Dane książki</legend>
-        
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="autor">Autor</label>  
-            <div class="col-md-4">
-            <input id="autor" name="autor" type="text" placeholder="Autor książki" class="form-control input-md" required="">
-            
-            </div>
-        </div>
-        
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="tytul">Tytuł</label>  
-            <div class="col-md-4">
-            <input id="tytul" name="tytul" type="text" placeholder="Tytuł książki" class="form-control input-md" required="">
-            
-            </div>
-        </div>
-        
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="isbn">ISBN</label>  
-            <div class="col-md-4">
-            <input id="isbn" name="isbn" type="text" placeholder="exmp: 124-5233-5151..." class="form-control input-md" required="">
-            
-            </div>
-        </div>
-
-        
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="datak">Data wydania</label>  
-            <div class="col-md-4">
-            <input id="datak" name="datak" type="date" placeholder="Data wydania książki" class="form-control input-md" required="">
-              
-            </div>
-          </div>
-        
-        </fieldset>
-        </form>
-        
-    <div id="uczniowie" style="display: none;">Uczen</div>
-
-    <div id="ksiazki" style="display: none;">Ksiazka</div>
+    <div id="okno4" style="display: none;">Ksiazka</div>
 
 
     
 </body>
 
-
-    
-</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
 
 <script>
 
-let postObj = { 
 
-id: 7, 
-user: "bm7",
-imie: "Mateusz"
-
-}
-
-
-var x1 = document.getElementById("formuczen");
-var x2 = document.getElementById("formksiazka");
-var x3 = document.getElementById("uczniowie");
-var x4 = document.getElementById("ksiazki");
+var x1 = document.getElementById("okno1");
+var x2 = document.getElementById("okno2");
+var x3 = document.getElementById("okno3");
+var x4 = document.getElementById("okno4");
 
 function btt1() {
     if (x1.style.display === "none") {
@@ -170,32 +114,47 @@ if (x4.style.display === "none") {
     }
 } 
 
-function psotnik()
-{
-    console.log("Post started") 
-    let post = JSON.stringify(postObj)
 
-    const url = "https://imiki.pl/projekt"
 
-    let xhr = new XMLHttpRequest()
+  document.getElementById("formuczen").addEventListener("submit", function (event) {
+              if (!validacjaUserForm()) {
+                  event.preventDefault();
+              }
+          });
 
-    xhr.open('POST', url, true)
+  document.getElementById("formksiazka").addEventListener("submit", function (event) {
+      if (!validacjaKsiazkaForm()) {
+          event.preventDefault();
+      }
+          });
 
-    xhr.setRequestHeader('Content-Type', 'application/json')
+  function validacjaKsiazkaForm() {
+      const allRegex = /.+/;
+      const ISBNRegex = /^\d{13}$/;
+     
 
- 
-    xhr.onreadystatechange = function() {//Call a function when the state changes.
-    if(xhr.readyState == 4 && xhr.status == 200) {
-         console.log("Done")
-    }
-}
-xhr.send(post);
+      return validateField("tytul", allRegex) && validateField("autor", allRegex) && validateField("ISBN", ISBNRegex);
+  }
+
   
-   console.log("Finished") 
-}
+  function validacjaUserForm() {
+      const allRegex = /.+/;
+     
 
+      return validateField("imie", allRegex) && validateField("nazwisko", allRegex) && validateField("klasa", allRegex);
+  }
 
+  function validateField(fieldName, regex) {
+            const field = document.getElementById(fieldName);
+            const fieldValue = field.value.trim();
 
+            if (!regex.test(fieldValue)) {
+                alert("Błąd walidacji: " + fieldName);
+                return false;
+            }
+
+            return true;
+        }
 
 
 
