@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+
+  
+    <div class="menu" style="padding: 15px;">
+        <button type="button" class="btn btn-primary" onclick="btt1()">Dodaj ucznia</button>
+        <button type="button" class="btn btn-primary" onclick="btt2()">Dodaj książkę</button>
+        <button type="button" class="btn btn-primary" onclick="btt3()">Wyświetl uczniów</button>
+        <button type="button" class="btn btn-primary" onclick="btt4()">Wyświetl Książki</button>
+     
+    </div>
+
+    <div id="okno1">
+    <form action="https://imiki.pl/projekt/bm7/users" id="formuczen" method="post" style="padding: 15px;">
+      <input type="hidden" value="bm7" name="id"> 
+      <div class="form-group">
+          <label for="imie">Imię:</label>
+          <input type="text" class="form-control" id="imie" name="imie" required>
+      </div>
+      <div class="form-group">
+          <label for="nazwisko">Nazwisko:</label>
+          <input type="text" class="form-control" id="nazwisko" name="nazwisko" required>
+      </div>
+      <div class="form-group">
+          <label for="klasa">Klasa:</label>
+          <input type="text" class="form-control" id="klasa" name="klasa" required>
+      </div>
+      <button class="btn btn-primary" type="submit">Wyślij</button>
+  </form>
+  </div>
+        
+  <div id="okno2" style="display: none;">
+  <form action="https://imiki.pl/projekt/bm7/books" id="formksiazka" method="post" style="padding: 15px;">
+    <input type="hidden" value="bm7" name="id"> 
+    <div class="form-group">
+        <label for="tytul">Tytuł:</label>
+        <input type="text" class="form-control" id="tytul" name="tytul" required>
+    </div>
+    <div class="form-group">
+        <label for="autor">Autor:</label>
+        <input type="text" class="form-control" id="autor" name="autor" required>
+    </div>
+    <div class="form-group">
+        <label for="ISBN">ISBN: </label>
+        <input type="text" class="form-control" id="ISBN" name="ISBN" required>
+    </div>
+    <div class="form-group">
+      <label for="data">Data: </label>
+      <input type="date" class="form-control" id="data" name="data" required>
+  </div>
+    <button class="btn btn-primary" type="submit">Wyślij</button>
+  </form>
+  </div>
+        
+    <div id="okno3" style="display: none;">
+        <button class="btn btn-primary" type="button" onclick="pobierzDane()">Pobierz dane</button>
+    <div id="wypluwaczu"></div>
+
+    </div>
+
+    <div id="okno4" style="display: none;">
+        <button class="btn btn-primary" type="button" onclick="pokazWypozyczone()">Pobierz dane</button>
+    <div id="wypluwaczk"></div></div>
+
+
+    
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+
+<script>
+
+const url = 'https://imiki.pl/projekt/bm7';
+
+
+var x1 = document.getElementById("okno1");
+var x2 = document.getElementById("okno2");
+var x3 = document.getElementById("okno3");
+var x4 = document.getElementById("okno4");
+
+function btt1() {
+    if (x1.style.display === "none") {
+      x1.style.display = "block";
+      x2.style.display = "none";
+      x3.style.display = "none";
+      x4.style.display = "none";
+    }
+  } 
+function btt2() {
+if (x2.style.display === "none") {
+        x2.style.display = "block";
+        x1.style.display = "none";
+        x3.style.display = "none";
+        x4.style.display = "none";
+    }
+} 
+
+function btt3() {
+if (x3.style.display === "none") {
+        x3.style.display = "block";
+        x2.style.display = "none";
+        x4.style.display = "none";
+        x1.style.display = "none";
+    }
+} 
+
+function btt4() {
+if (x4.style.display === "none") {
+        x4.style.display = "block";
+        x3.style.display = "none";
+        x2.style.display = "none";
+        x1.style.display = "none";
+    }
+} 
+
+
+
+  document.getElementById("formuczen").addEventListener("submit", function (event) {
+              if (!validacjaUserForm()) {
+                  event.preventDefault();
+              }
+          });
+
+  document.getElementById("formksiazka").addEventListener("submit", function (event) {
+      if (!validacjaKsiazkaForm()) {
+          event.preventDefault();
+      }
+          });
+
+  function validacjaKsiazkaForm() {
+      const allRegex = /.+/;
+      const ISBNRegex = /^\d{13}$/;
+     
+
+      return validateField("tytul", allRegex) && validateField("autor", allRegex) && validateField("ISBN", ISBNRegex);
+  }
+
+  
+  function validacjaUserForm() {
+      const allRegex = /.+/;
+     
+
+      return validateField("imie", allRegex) && validateField("nazwisko", allRegex) && validateField("klasa", allRegex);
+  }
+
+  function validateField(fieldName, regex) {
+            const field = document.getElementById(fieldName);
+            const fieldValue = field.value.trim();
+
+            if (!regex.test(fieldValue)) {
+                alert("Błąd walidacji: " + fieldName);
+                return false;
+            }
+
+            return true;
+        }
+
+        function pobierzDane() {
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    wyswietlucznuw(data, 'books');
+                })
+                .catch(error => {
+                    console.error('Błąd podczas pobierania danych JSON:', error);
+                });
+        }
+
+        function pokazWypozyczone() {
+            fetch(`${url}/books/borrowed`)
+                .then(response => response.json())
+                .then(data => {
+                    wyswietlksiazki(data, 'books');
+                })
+                .catch(error => {
+                    console.error('Błąd podczas pobierania wypożyczonych książek:', error);
+                });
+        }
+
+
+        function dane(d) {
+            let str = "";
+            let i = 0;
+            for (const ind of d) {
+                const a = JSON.parse(ind.data);
+                i++;
+                str += i + " ";
+                str += a.imie + " "; 
+                str += a.nazwisko + " "; 
+                str += a.klasa + " ";
+            }
+            wypluwacz.innerHTML = str;
+        }
+        function wyswietlksiazki(d, dataType) {
+            let str = "";
+            wypluwaczk.innerHTML = str;
+            d.forEach((ind, i) => {
+                let bookData = JSON.parse(ind.data);
+                str = "";
+                str += (i + 1) + " | ";
+                str += bookData.id + " | ";
+                str += bookData.tytul + " | ";
+                str += bookData.autor + " | ";
+                str += bookData.ISBN + " | ";
+                str += bookData.data+ "<br>";
+                if (typeof bookData.tytul !== 'undefined')  wypluwaczk.innerHTML += str;
+            });
+        }
+
+            function wyswietlucznuw(d, dataType) {
+            let str = "";
+            wypluwaczu.innerHTML = str;
+            d.forEach((ind, i) => {
+                let uczendata = JSON.parse(ind.data);
+                
+                str += (i + 1) + " | ";
+                str += uczendata.id + " | ";
+                str += uczendata.imie + " | ";
+                str += uczendata.nazwisko + " | ";
+                str += uczendata.klasa + "<br>";
+                if (typeof uczendata.imie !== 'undefined')
+                {
+                    wypluwaczu.innerHTML += str;
+                    str=" ";
+                }
+                else
+                {
+                    str=" ";
+                }
+            });
+         
+        }
+
+</script>
+</html>
